@@ -6,7 +6,7 @@ import Footer from '../Shared/Footer/Footer';
 
 function Main() {
     return (
-        <div className='bg-slate-400'>
+        <div className='container mx-auto'>
             <Header></Header>
             <Outlet></Outlet>
             <Footer></Footer>
