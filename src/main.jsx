@@ -9,12 +9,17 @@ import Main from './Components/Main/Main.jsx';
 import Blog from './Components/Blog/Blog';
 import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
+import Banner from './Components/Banner/Banner';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
     children: [
+      {
+        path: "/",
+        element: <Banner></Banner>
+      },
      {
       path: "/blog",
       element: <Blog></Blog>,

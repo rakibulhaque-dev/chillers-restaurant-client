@@ -1,5 +1,8 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react'
 import { Link } from 'react-router-dom';
+import Header from '../Shared/Header/Header';
+import Footer from '../Shared/Footer/Footer';
 
 function Register() {
     const handleRegister = () =>{
@@ -7,6 +10,7 @@ function Register() {
     }
     return (
         <div className='container mx-auto text-center'>
+            <Header></Header>
             <form onSubmit={handleRegister} className='items-center p-6 text-center bg-slate-100'>
             <h2 className='mb-2 font-bold text-purple-700'>Please Register!!!</h2>
                 <label className="flex justify-center mb-3 input-group">
@@ -25,6 +29,7 @@ function Register() {
                 <button className='px-5 py-3 mt-3 font-bold text-white bg-purple-700 rounded-sm shadow-lg' type="submit">Register</button>
             <p className='mt-2'>Have an account? <Link className='font-bold text-blue-800' to="/login">Please Login</Link> </p>
             </form>
+            <Footer></Footer>
         </div>
     )
 }
