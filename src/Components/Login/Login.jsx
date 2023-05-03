@@ -4,17 +4,22 @@ import Header from '../Shared/Header/Header';
 import Footer from '../Shared/Footer/Footer';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { AuthContext } from '../../provider/AuthProvider';
+import { getAuth } from 'firebase/auth';
+import app from '../../firebase/firebase.config';
+import { BsFillXSquareFill } from "react-icons/bs";
 
-
+const auth = getAuth(app)
 const Login = () => {
-    const { signIn ,signInGitHub, signInGoogle} = useContext(AuthContext)
-    
+    const { signIn, signInGitHub, signInGoogle } = useContext(AuthContext)
+
     const [user, setUser] = useState(null)
-    
+    const [error, setError] = useState('')
+    const mainError = error.slice(22, 36)
+
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
-  
+
 
     const loginWithEmail = event => {
         event.preventDefault();
@@ -29,9 +34,10 @@ const Login = () => {
                 setUser(loggedUser)
                 form.reset()
                 navigate(from, { replace: true })
-            }) 
+            })
             .catch(error => {
-                console.log(error)
+                setError(error.message)
+                console.log(error.message)
             })
     };
 
@@ -49,7 +55,19 @@ const Login = () => {
                     <span>Password</span>
                     <input type="password" name='password' placeholder="Your password" className="shadow-lg input input-bordered" required />
                 </label>
+                <div>
+                    {
+                        error &&
+                        <div>
+                            <div className='flex items-center justify-center gap-3 p-2 mt-3 bg-red-100 shadow-lg'>
+                                <BsFillXSquareFill className='text-red-600'></BsFillXSquareFill>
+                                <p className='text-red-600'>Sorry, {mainError}!!!</p>
+                                <Link className='text-blue-600 hover:text-black hover:font-bold hover:animate-pulse' to="/register"><small>Please, create an Account...</small></Link>
+                            </div>
+                        </div>
+                    }
 
+                </div>
                 <div className='form-control'>
                     <button className='px-5 py-3 mt-3 font-bold text-white bg-purple-700 rounded-sm shadow-lg' type="submit" value="login">Login</button>
                 </div>

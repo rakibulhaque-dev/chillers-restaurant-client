@@ -34,7 +34,6 @@ const AuthProvider = ({ children }) => {
             const user = result.user;
             console.log(user);
             setUser(user)
-            form.reset()
         })
         .catch(error=>{
             console.log("error", error.message)

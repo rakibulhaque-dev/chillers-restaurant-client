@@ -4,11 +4,11 @@ import { AuthContext } from '../../../provider/AuthProvider';
 import { FaUser } from 'react-icons/fa';
 
 const Header = () => {
-    const { user , logOut} = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
     const handleLogOut = () => {
         logOut()
-        .then(result =>{})
-        .catch(error => console.error(error))
+            .then(result => { })
+            .catch(error => console.error(error))
     }
     return (
         <div className='container items-center justify-around p-5 mx-auto mb-4 shadow-lg md:flex'>
@@ -22,10 +22,22 @@ const Header = () => {
                 <li><a className='font-bold text-purple-600' href="/chef">Chef</a></li>
                 {/* <FaUser /> */}
             </ul>
-           { user &&
-            <span className='text-xs'>Welcome {user?.displayName} <button className='px-2 py-1 text-white bg-purple-500 rounded-sm hover:bg-purple-900' onClick={handleLogOut}>Log Out</button></span>
-           }
-           <div><FaUser></FaUser>{user?.email}</div>
+            {/* {user &&
+                <span className='text-xs'>Welcome {user?.displayName} </span>
+            } */}
+            <div className='flex items-center justify-center gap-4'>
+                {
+                user?.photoURL ? <img className='w-8 h-8 rounded-full' src={user.photoURL} alt="" /> 
+                 : <FaUser></FaUser>}
+                 {
+                    user?.displayName ? <span>{user.displayName}</span> : ""
+                 }
+                <small>
+                    { user &&
+                         <button className='px-2 py-1 text-white bg-purple-500 rounded-sm hover:bg-purple-900' onClick={handleLogOut}>Log Out</button>
+                    }
+                </small>
+            </div>
         </div>
     )
 }
