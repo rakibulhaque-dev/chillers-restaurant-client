@@ -1,4 +1,4 @@
-import React, { Children, useContext } from 'react'
+import React, { Children, useContext, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Header from '../Shared/Header/Header';
 import Footer from '../Shared/Footer/Footer';
@@ -7,37 +7,39 @@ import { AuthContext } from '../../provider/AuthProvider';
 
 
 const Login = () => {
-    const { signIn } = useContext(AuthContext)
+    const { signIn ,signInGitHub, signInGoogle} = useContext(AuthContext)
+    
+    const [user, setUser] = useState(null)
+    
     const navigate = useNavigate();
     const location = useLocation();
-    
-    const from = location.state?.from?.pathname || '/' ;
-    const handleSubmit = event => {
-        event.preventDefault();
+    const from = location.state?.from?.pathname || '/';
+  
 
+    const loginWithEmail = event => {
+        event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password)
+        // console.log(email, password)
 
         signIn(email, password)
             .then(result => {
                 const loggedUser = result.user;
-                console.log(loggedUser)
+                setUser(loggedUser)
                 form.reset()
-                navigate(from, {replace: true})
-            })
+                navigate(from, { replace: true })
+            }) 
             .catch(error => {
                 console.log(error)
             })
-
-
     };
+
 
     return (
         <div className='container mx-auto text-center'>
-            <Header></Header>
-            <form onSubmit={handleSubmit} className='items-center p-6 text-center bg-slate-100'>
+            <Header data={user}></Header>
+            <form onSubmit={loginWithEmail} className='items-center p-6 text-center bg-slate-100'>
                 <h2 className='mb-2 font-bold text-purple-700'>Please Login!!!</h2>
                 <label className="flex justify-center input-group">
                     <span>Email</span>
@@ -53,8 +55,8 @@ const Login = () => {
                 </div>
                 <p className='mt-2'><small>Don't have any account? <Link className='font-bold text-blue-800' to="/register">Please Register</Link></small> </p>
                 <div className='justify-center gap-3 md:flex lg:flex'>
-                    <button className='px-4 border border-purple-800'><span className='flex items-center gap-2 text-purple-700'><FaGithub /> GitHub Sign-in</span></button>
-                    <button className='px-4 border border-purple-800'><span className='flex items-center gap-2 text-purple-700'><FaGoogle />Google Sign-in</span></button>
+                    <button onClick={signInGitHub} className='px-4 border border-purple-800'><span className='flex items-center gap-2 text-purple-700'><FaGithub /> GitHub Sign-in</span></button>
+                    <button onClick={signInGoogle} className='px-4 border border-purple-800'><span className='flex items-center gap-2 text-purple-700'><FaGoogle />Google Sign-in</span></button>
                 </div>
             </form>
             <Footer></Footer>

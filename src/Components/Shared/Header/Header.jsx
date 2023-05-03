@@ -5,7 +5,6 @@ import { FaUser } from 'react-icons/fa';
 
 const Header = () => {
     const { user , logOut} = useContext(AuthContext)
-
     const handleLogOut = () => {
         logOut()
         .then(result =>{})
@@ -24,8 +23,9 @@ const Header = () => {
                 {/* <FaUser /> */}
             </ul>
            { user &&
-            <span>Welcome {user?.displayName} <button className='px-2 py-1 text-white bg-purple-500 rounded-sm hover:bg-purple-900' onClick={handleLogOut}>Log Out</button></span>
+            <span className='text-xs'>Welcome {user?.displayName} <button className='px-2 py-1 text-white bg-purple-500 rounded-sm hover:bg-purple-900' onClick={handleLogOut}>Log Out</button></span>
            }
+           <div><FaUser></FaUser>{user?.email}</div>
         </div>
     )
 }

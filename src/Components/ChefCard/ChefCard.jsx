@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const ChefCard = ({data}) => {
     const {chef_name, years_of_experience, num_recipes, num_likes, chef_img} = data;
     return (
-        <div className='p-4'>
+        <div className='container p-4 mx-auto border shadow-lg bg-slate-100'>
             <img src={chef_img} className='w-20 h-20 rounded-full' alt="" />
             <h2><span className='font-bold'>Chef Name:</span> {chef_name}</h2>
             <p><span className='font-bold'>Experience:</span> {years_of_experience} Years</p>

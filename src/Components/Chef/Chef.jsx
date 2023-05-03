@@ -9,7 +9,7 @@ const Chef = () => {
             <div className='p-4 text-center rounded-lg shadow-lg'>
                 <h1 className='text-3xl font-extrabold text-purple-800'>We have <span className='text-red-600'>{chef.length}</span> international Chef!</h1>
             </div>
-            <div className='grid justify-between grid-cols-3 gap-4'>
+            <div className='grid-cols-3 gap-4 mt-9 md:justify-between lg:justify-between md:grid lg:grid'>
                 {
                     chef.map(p => <ChefCard
                         key={p.chef_id}
