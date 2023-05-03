@@ -8,8 +8,9 @@ function Banner() {
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="text-center hero-content text-neutral-content">
                     <div className="max-w-md">
-                        <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-                        <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                        <h1 className="mb-5 text-5xl font-bold">Welcome to American Foods</h1>
+                        <p className="mb-5">
+                        American cuisine consists of the cooking style and traditional dishes prepared in the United States. It has been significantly influenced by Europeans, indigenous Native Americans, Africans, Asians, Pacific Islanders, and many other cultures and traditions.</p>
                     </div>
                 </div>
             </div>
