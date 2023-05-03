@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom';
+import React, { Children, useContext } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Header from '../Shared/Header/Header';
 import Footer from '../Shared/Footer/Footer';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
@@ -7,7 +7,11 @@ import { AuthContext } from '../../provider/AuthProvider';
 
 
 const Login = () => {
-    const {signIn} = useContext(AuthContext)
+    const { signIn } = useContext(AuthContext)
+    const navigate = useNavigate();
+    const location = useLocation();
+    
+    const from = location.state?.from?.pathname || '/' ;
     const handleSubmit = event => {
         event.preventDefault();
 
@@ -17,15 +21,17 @@ const Login = () => {
         console.log(email, password)
 
         signIn(email, password)
-        .then(result => {
-            const loggedUser = result.user;
-            form.reset()
-        })
-        .catch(error => {
-            console.log(error)
-        })
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser)
+                form.reset()
+                navigate(from, {replace: true})
+            })
+            .catch(error => {
+                console.log(error)
+            })
 
-        
+
     };
 
     return (

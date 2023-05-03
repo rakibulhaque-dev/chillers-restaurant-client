@@ -13,6 +13,8 @@ import Banner from './Components/Banner/Banner';
 import AuthProvider, { AuthContext } from './provider/AuthProvider';
 import Chef from './Components/Chef/Chef';
 import Recipe from './Components/Recipe/Recipe';
+import PrivateRoute from './Components/routes/PrivateRoute';
+import Favorites from './Components/Favorites/Favorites';
 
 const router = createBrowserRouter([
   {
@@ -39,11 +41,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/recipe",
-    element: <Recipe></Recipe>
+    element: <PrivateRoute><Recipe></Recipe></PrivateRoute>
   },
   {
     path: "/chef",
     element: <Chef></Chef>
+  },
+  {
+    path: "/favorites",
+    element:  <PrivateRoute><Favorites></Favorites></PrivateRoute>
   }
 ]);
 
