@@ -12,6 +12,7 @@ import Register from './Components/Register/Register';
 import Banner from './Components/Banner/Banner';
 import AuthProvider, { AuthContext } from './provider/AuthProvider';
 import Chef from './Components/Chef/Chef';
+import Recipe from './Components/Recipe/Recipe';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,14 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register></Register>
+  },
+  {
+    path: "/recipe",
+    element: <Recipe></Recipe>
+  },
+  {
+    path: "/chef",
+    element: <Chef></Chef>
   }
 ]);
 

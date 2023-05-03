@@ -11,7 +11,9 @@ const ChefCard = ({data}) => {
             <p><span className='font-bold'>Recipe:</span> {num_recipes} items</p>
             <p className='flex items-center gap-3'><span className='text-red-700'><FaHeart></FaHeart></span> {num_likes}</p>
         
-            <button className='px-5 py-2 text-white bg-purple-700 hover:bg-purple-950'><Link>See Recipe</Link></button>
+            <button className='px-5 py-2 text-white bg-purple-700 hover:bg-purple-950'>
+                <Link to="/recipe">See Recipe</Link>
+            </button>
             
         </div>
     );
