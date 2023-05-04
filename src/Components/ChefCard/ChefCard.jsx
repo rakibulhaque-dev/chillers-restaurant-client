@@ -2,7 +2,7 @@ import React from 'react';
 import { FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 const ChefCard = ({data}) => {
-    const {chef_name, years_of_experience, num_recipes, num_likes, chef_img} = data;
+    const {chef_name, years_of_experience, num_recipes, num_likes, chef_img, chef_id} = data;
     return (
         <div className='container p-4 mx-auto border shadow-lg bg-slate-100'>
             <img src={chef_img} className='w-20 h-20 rounded-full' alt="" />
@@ -12,7 +12,7 @@ const ChefCard = ({data}) => {
             <p className='flex items-center gap-3'><span className='text-red-700'><FaHeart></FaHeart></span> {num_likes}</p>
         
             <button className='px-5 py-2 text-white bg-purple-700 hover:bg-purple-950'>
-                <Link to="/recipe">See Recipe</Link>
+                <Link to={`/recipe/${chef_id}`}>See Recipe</Link>
             </button>
             
         </div>
