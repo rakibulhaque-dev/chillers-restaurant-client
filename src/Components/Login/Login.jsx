@@ -1,39 +1,36 @@
-import React, { Children, useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Header from '../Shared/Header/Header';
 import Footer from '../Shared/Footer/Footer';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { AuthContext } from '../../provider/AuthProvider';
-import { getAuth } from 'firebase/auth';
-import app from '../../firebase/firebase.config';
 import { BsFillXSquareFill } from "react-icons/bs";
 
-const auth = getAuth(app)
 const Login = () => {
     const { signIn, signInGitHub, signInGoogle } = useContext(AuthContext)
+    
+    const navigate = useNavigate();
+    const location = useLocation();
+    console.log(location) 
+
+    const from = location.state?.from?.pathname || '/';
 
     const [user, setUser] = useState(null)
     const [error, setError] = useState('')
     const mainError = error.slice(22, 36)
 
-    const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || '/';
-
-
+    
     const loginWithEmail = event => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        // console.log(email, password)
-
         signIn(email, password)
             .then(result => {
                 const loggedUser = result.user;
                 setUser(loggedUser)
                 form.reset()
-                navigate(from, { replace: true })
+                navigate(from, {replace: true})
             })
             .catch(error => {
                 setError(error.message)

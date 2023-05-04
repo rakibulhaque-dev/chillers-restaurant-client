@@ -14,9 +14,6 @@ const AuthProvider = ({ children }) => {
     const githubProvider = new GithubAuthProvider();
     const googleProvider = new GoogleAuthProvider();
 
-    // const navigate = useNavigate();
-    // const location = useLocation();
-    // const from = location.state?.from?.pathname || '/';
    
     const createUser = (email, password) => {
         setLoading(true)
@@ -27,8 +24,8 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
     const signInGitHub = (event) => {
-        setLoading(true)
         event.preventDefault();
+        setLoading(true)
         signInWithPopup(auth, githubProvider)
         .then(result=>{
             const user = result.user;
@@ -72,6 +69,7 @@ const AuthProvider = ({ children }) => {
             .then(data => setChef(data))
             .catch(error => console.error(error))
     }, [])
+
     const authInfo = {
         user,
         chef,
