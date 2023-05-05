@@ -5,10 +5,9 @@ import SingleRecipe from '../SingleRecipe/SingleRecipe';
 import { FaAddressBook, FaCookie, FaHeart, FaUser } from 'react-icons/fa';
 
 const Recipe = () => {
-
     const { id } = useParams()
+    
     const data = useLoaderData()
-    console.log(data)
     const { chef_id, recipe, chef_img, chef_name, years_of_experience, num_recipes, num_likes } = data
 
     return (
