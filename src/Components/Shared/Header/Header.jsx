@@ -35,15 +35,12 @@ const Header = () => {
         <li><a className='block mt-4 font-bold text-purple-600 md:inline-block md:mt-0 md:ml-6' href="/register">Register</a></li>
         <li><a className='block mt-4 font-bold text-purple-600 md:inline-block md:mt-0 md:ml-6' href="/login">Login</a></li>
         <li><a className='block mt-4 font-bold text-purple-600 md:inline-block md:mt-0 md:ml-6' href="/chef">Chef</a></li>
-        {/* <FaUser /> */}
       </ul>
-      {/* {user &&
-                <span className='text-xs'>Welcome {user?.displayName} </span>
-            } */}
+
       <div className='flex items-center justify-center gap-4'>
         {
           user?.photoURL ? <img className='w-8 h-8 rounded-full' src={user.photoURL} alt="" />
-            : <FaUser></FaUser>}
+            : ""}
         {
           user?.displayName ? <span>{user.displayName}</span> : ""
         }
